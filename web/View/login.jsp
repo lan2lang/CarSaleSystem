@@ -117,7 +117,8 @@
 				<div class="ts-inputs">
 					<div style="position: absolute; left: -5000px;"><input type="text" name="tildachek9230"
 																		   tabindex="-1" value="" id="tildachek9230"></div>
-					<div class="ts-inputs__item"><label><input type="text" required="" name="userName" id="userName"
+					<div class="ts-inputs__item"><label>
+						<input type="text" required="" name="userName" id="userName"
 															   class="ts-input ts-input_autofill-transparent" autocomplete="off">
 						<div id="lable1" class="ts-placeholder">UserName</div>
 					</label></div>

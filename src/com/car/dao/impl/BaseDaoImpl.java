@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -112,7 +111,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     // 获取序列号（序列号为S_表名）
-    //    int seq = getSequence("S_" + tableName);
+    //    int seq = getSequence("S_"+tableName);
 
     // 拼接插入的Sql语句
     sql.append("insert into " + tableName + " (");
@@ -130,9 +129,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         // 获取注解中的列名
         sql.append(f.getAnnotation(TableName.class).name());
       } else {
-        if (f.isAnnotationPresent(PK.class)) {
-
-        } else {
+        if (!f.isAnnotationPresent(PK.class)) {
           // 获取字段名
           sql.append(f.getName());
           sql.append(",");
@@ -147,7 +144,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     sql.append(") values (");
 
     // 拼接未知参数(也叫编译参数，都使用?代替)
-    for (int i = 0; i < fields.length - 1; i++) {
+    for (int i = 0; i < fields.length; i++) {
       /*// 当对象中的属性被@PK注解了，说明它是主键，需要作用对应的序列S_表名.nextVal
       if(fields[i].isAnnotationPresent(PK.class))
       {
@@ -160,8 +157,12 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
       	// 如果不是主键，则使用?代替
           sql.append("?,");
       }*/
-      // 如果不是主键，则使用?代替
-      sql.append("?,");
+      if (fields[i].isAnnotationPresent(PK.class)) {
+
+      } else {
+        // 如果不是主键，则使用?代替
+        sql.append("?,");
+      }
     }
 
     // 去掉最后一个,号
@@ -173,9 +174,9 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     // 由于插入语句我们使用的是PerperedStatement,SQL中的参数使用的是?（防止SQL注入）
     // 以下是获取对象中的数据，组装成一个对象集合，传递给执行SQL语句的方法executeUpdate(Sql,参数)
     // 初始化参数对象数组，个数为属性个数-1, 因为主键是用序列生成。其它的数据使用对象中的数据
-    Object[] objs = new Object[fields.length];
+    Object[] objs = new Object[fields.length - 1];
     // i:控制循环次数据，有几个字段的就要循环几次
-    for (int i = 0; i < fields.length; i++) {
+    for (int i=0, j = 0; i < fields.length; i++) {
       // 字段集合中有一个是主键字段， 如果是主键，则不需要管，因为有序列生成
       if (fields[i].isAnnotationPresent(PK.class)) {
         //        // 设置主键对应的序列号
@@ -183,13 +184,17 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         //
         //        // 给对象赋插入的ID(主 键) 便于返回
         //        fields[i].set(t, seq);
-      }
+      } else {
 
-      // 通过字段对象，获取某个对象中该字段的值，并将值赋值给对象数组（将下标向下移动一位j++）
-      objs[i] = fields[i].get(t);
+        // 通过字段对象，获取某个对象中该字段的值，并将值赋值给对象数组（将下标向下移动一位j++）
+        objs[j] = fields[i].get(t);
+        j++;
+      }
     }
-    Arrays.toString(objs);
+
     // 调用执行添加删除修改的方法，执行该Sql语句，并将参数传递过去
+
+    System.out.println(objs);
     return executeUpdate(sql.toString(), objs);
   }
 

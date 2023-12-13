@@ -3,9 +3,29 @@ package com.car.dao.impl;
 import com.car.entity.PageList;
 import com.car.entity.Staff;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 /** 客户数据层 */
 public class StaffDao extends BaseDaoImpl<Staff> {
+
+  /** 查询所有员工 */
+  public List<Staff> selectAllStaff() throws Exception {
+    String sql = "select staffId,staffNo,staffName,password,sex,phone from Staff";
+    executeQuery(sql);
+    ArrayList<Staff> list = new ArrayList<>();
+    while (rs.next()) {
+      Staff staff = new Staff();
+      staff.setStaffId(rs.getInt("staffId"));
+      staff.setStaffNo(rs.getString("staffNo"));
+      staff.setStaffName(rs.getString("staffName"));
+      staff.setPassword(rs.getString("password"));
+      staff.setSex(rs.getString("sex"));
+      staff.setPhone(rs.getString("phone"));
+      list.add(staff);
+    }
+    return list;
+  }
 
   /** 查询员工列表（分页） */
   public PageList selectStaffList(int index, int size) throws Exception {

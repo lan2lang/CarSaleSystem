@@ -35,7 +35,9 @@ public class ClientController extends HttpServlet {
     // 不带条件查询
     if (req.getParameter("staffId") == null) {
       try {
+        //查询
         List<Client> list = clientDao.selectAll(Client.class);
+        //返回
         Utils.returnJson(res, Result.success(list));
       } catch (Exception e) {
         e.printStackTrace();

@@ -39,7 +39,7 @@ public class StaffController extends HttpServlet {
     res.setHeader("Content-Type", "application/json;charset=utf-8");
 
     try {
-      List<Staff> list = staffDao.selectAll(Staff.class);
+      List<Staff> list = staffDao.selectAllStaff();
       Utils.returnJson(res, Result.success(list));
     } catch (Exception e) {
       e.printStackTrace();

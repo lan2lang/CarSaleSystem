@@ -274,11 +274,12 @@
             success:function (data){
                 if (data.code === 0){
                     alert(data.msg)
+                } else {
+                    window.location.replace("<%=path%>/View/clientCarList.jsp")
                 }
-                console.log(data)
             },
-            error: function (data) {
-
+            error: function () {
+                alert("请求失败")
             }
         })
     })
@@ -308,8 +309,8 @@
                 }
                 console.log(data)
             },
-            error: function (data) {
-
+            error: function () {
+                alert("注册失败")
             }
         })
 

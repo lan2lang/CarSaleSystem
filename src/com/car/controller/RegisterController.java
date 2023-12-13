@@ -1,6 +1,8 @@
 package com.car.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.car.dao.impl.ClientDao;
+import com.car.entity.Client;
 import com.car.result.Result;
 import com.car.utils.Utils;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/register")
 public class RegisterController extends HttpServlet {
 
+  ClientDao clientDao = new ClientDao();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -32,25 +35,28 @@ public class RegisterController extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest req, HttpServletResponse res)
       throws ServletException, IOException {
-    // 解析请求
-    Utils.parse(req);
-
     // 设置编码格式
     req.setCharacterEncoding("UTF-8");
     res.setCharacterEncoding("UTF-8");
+
+    // 解析请求
+    Client client = JSON.parseObject(Utils.parse(req), Client.class);
 
     // 设置响应头的编码
     res.setHeader("Content-Type", "application/json;charset=utf-8");
     //    res.setHeader("Content-Type", "text/html;charset=utf-8");
 
-    // 解析请求体
-
     // 新增客户
+    try {
+      clientDao.insert(client);
+    } catch (Exception e) {
+      // 注册失败
+      res.getWriter().append(JSON.toJSONString(Result.error("用户名已存在")));
+//      e.printStackTrace();
+      return;
+    }
 
     // 注册成功
-    Result.success();
-
-    // 注册失败
-    res.getWriter().append(JSON.toJSONString(Result.error("用户名已存在")));
+    Utils.returnJson(res, Result.success());
   }
 }

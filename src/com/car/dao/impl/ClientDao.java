@@ -5,6 +5,19 @@ import java.lang.reflect.Field;
 
 /** 客户数据层 */
 public class ClientDao extends BaseDaoImpl<Client> {
+  @Override
+  public int insert(Client client) throws Exception {
+    String sql =
+        "insert into Client (clientNo,clientName,password,sex,phone,staffId) values (?,?,?,?,?,?)";
+    return executeUpdate(
+        sql,
+        client.getClientNo(),
+        client.getClientName(),
+        client.getPassword(),
+        client.getSex(),
+        client.getPhone(),
+        client.getStaffId());
+  }
 
   /** 登录 */
   public Client login(Client client) throws Exception {

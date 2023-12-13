@@ -65,7 +65,7 @@ INSERT INTO `client` VALUES (6, 'asd', 'qwe', '1234', '女', '18652744755', 2);
 -- ----------------------------
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order`  (
-  `     orderId` int NOT NULL AUTO_INCREMENT,
+  `orderId` int NOT NULL AUTO_INCREMENT,
   `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
   `desc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
   `clientId` int NULL DEFAULT NULL,

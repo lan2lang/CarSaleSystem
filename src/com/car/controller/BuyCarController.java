@@ -2,19 +2,15 @@ package com.car.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.car.dao.impl.OrderDao;
-import com.car.entity.Car;
 import com.car.entity.Order;
 import com.car.result.Result;
 import com.car.utils.Utils;
-
+import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 /** 买车控制器 */
 @WebServlet("/buyCar")
@@ -32,7 +28,27 @@ public class BuyCarController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    super.doGet(req, resp);
+    // 设置编码格式
+    req.setCharacterEncoding("UTF-8");
+    resp.setCharacterEncoding("UTF-8");
+
+    // 解析请求
+    int orderId = Integer.parseInt(req.getParameter("orderId"));
+
+    // 设置响应头的编码
+    resp.setHeader("Content-Type", "application/json;charset=utf-8");
+
+    // 设置订单时间
+//    order.setOrderTime(LocalDateTime.now());
+    // dao
+    try {
+      orderDao.confirm(orderId);
+      Utils.returnJson(resp, Result.success());
+    } catch (Exception e) {
+      e.printStackTrace();
+//      Utils.returnJson(resp,Result.error("失败"));
+    }
+
   }
 
   /**
@@ -79,7 +95,26 @@ public class BuyCarController extends HttpServlet {
   @Override
   protected void doPut(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    super.doPut(req, resp);
+    // 设置编码格式
+    req.setCharacterEncoding("UTF-8");
+    resp.setCharacterEncoding("UTF-8");
+
+    // 解析请求
+    int orderId = Integer.parseInt(req.getParameter("orderId"));
+
+    // 设置响应头的编码
+    resp.setHeader("Content-Type", "application/json;charset=utf-8");
+
+    // 设置订单时间
+//    order.setOrderTime(LocalDateTime.now());
+    // dao
+    try {
+      orderDao.pay(orderId);
+      Utils.returnJson(resp, Result.success());
+    } catch (Exception e) {
+      e.printStackTrace();
+//      Utils.returnJson(resp,Result.error("失败"));
+    }
   }
 
   /**
@@ -93,6 +128,25 @@ public class BuyCarController extends HttpServlet {
   @Override
   protected void doDelete(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    super.doDelete(req, resp);
+    // 设置编码格式
+    req.setCharacterEncoding("UTF-8");
+    resp.setCharacterEncoding("UTF-8");
+
+    // 解析请求
+    int orderId = Integer.parseInt(req.getParameter("orderId"));
+
+    // 设置响应头的编码
+    resp.setHeader("Content-Type", "application/json;charset=utf-8");
+
+    // 设置订单时间
+//    order.setOrderTime(LocalDateTime.now());
+    // dao
+    try {
+      orderDao.cancel(orderId);
+      Utils.returnJson(resp, Result.success());
+    } catch (Exception e) {
+      e.printStackTrace();
+//      Utils.returnJson(resp,Result.error("失败"));
+    }
   }
 }

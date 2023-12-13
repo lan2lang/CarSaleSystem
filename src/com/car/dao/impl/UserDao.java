@@ -6,7 +6,7 @@ public class UserDao extends BaseDaoImpl<User> {
 
   /** 验证用户名密码是否正确 */
   public int verify(User user) throws Exception {
-    sql = "update user set userName=? where userName=? and password=?";
+    sql = "update user set username=? where username=? and password=?";
     try {
       return executeUpdate(sql,user.getUserName(), user.getUserName(), user.getPassword());
 

@@ -35,9 +35,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
   private void initPreparedStatement(String sql, Object... objs) throws Exception {
     con = null;
     if (con == null) {
-      con = DbUtils.getConnection();
+      //      con = DbUtils.getConnection();
+      con = DruidUtils.getConnection();
     }
-    		System.out.println("sql:"+sql);
+    System.out.println("sql:" + sql);
     ps = con.prepareStatement(sql);
 
     // 设置未知参的值

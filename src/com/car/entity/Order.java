@@ -2,6 +2,8 @@ package com.car.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.car.anno.PK;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class Order implements Serializable {
 
   /** */
+  @PK
   private Integer orderId;
 
   /**订单状态；默认、待确认、待付款、已完成 */

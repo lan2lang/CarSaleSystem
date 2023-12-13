@@ -1,11 +1,33 @@
 package com.car.dao.impl;
 
-import com.car.entity.Client;
+import com.car.entity.PageList;
 import com.car.entity.Staff;
 import java.lang.reflect.Field;
 
 /** 客户数据层 */
-public class StaffDao extends BaseDaoImpl<Client> {
+public class StaffDao extends BaseDaoImpl<Staff> {
+
+  /** 查询员工列表（分页） */
+  public PageList selectStaffList(int index, int size) throws Exception {
+    PageList<Staff> list = new PageList<>(index, size);
+    selectByPage(Staff.class, "Staff", list);
+
+    return list;
+  }
+
+  /** 新增员工 */
+  @Override
+  public int insert(Staff staff) throws Exception {
+    String sql =
+        "insert into staff(staffNo, staffName, password, sex, phone) VALUES (?, ?, ?, ?, ?) ";
+    return executeUpdate(
+        sql,
+        staff.getStaffNo(),
+        staff.getStaffName(),
+        staff.getPassword(),
+        staff.getSex(),
+        staff.getPhone());
+  }
 
   /** 登录 */
   public Staff login(Staff staff) throws Exception {

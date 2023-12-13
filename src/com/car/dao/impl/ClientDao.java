@@ -2,9 +2,21 @@ package com.car.dao.impl;
 
 import com.car.entity.Client;
 import java.lang.reflect.Field;
+import java.util.List;
 
 /** 客户数据层 */
 public class ClientDao extends BaseDaoImpl<Client> {
+  /** 查询指定员工的客户 */
+  public List<Client> selectClientsByStaff(int staffId) throws Exception {
+    String sql = "select  clientNo,clientName,password,sex,phone,staffId from client where staffId=?";
+    return selectAll(Client.class, sql, staffId);
+  }
+
+  /**
+   * 新增客户
+   *
+   * @param client 插入的对象
+   */
   @Override
   public int insert(Client client) throws Exception {
     String sql =

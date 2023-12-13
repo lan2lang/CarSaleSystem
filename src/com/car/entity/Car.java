@@ -1,6 +1,8 @@
 package com.car.entity;
 
 import java.io.Serializable;
+
+import com.car.anno.PK;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Car implements Serializable {
 
   /** */
-  private Integer carId;
+  @PK private Integer carId;
 
   /**品牌 */
   private String brand;

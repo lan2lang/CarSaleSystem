@@ -1,6 +1,7 @@
 package com.car.entity;
 
 
+import com.car.anno.PK;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class Client implements Serializable {
     /**
     *
     */
+    @PK
     private Integer clientId;
     /**
     *

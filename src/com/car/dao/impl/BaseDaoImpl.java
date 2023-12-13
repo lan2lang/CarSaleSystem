@@ -8,6 +8,8 @@ import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,8 +46,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     // 设置未知参的值
     for (int i = 0; i < objs.length; i++) {
       // 日期特殊处理
-      if ("java.util.Date".equals(objs[i].getClass().getTypeName())) {
-        ps.setTimestamp(i + 1, new java.sql.Timestamp(((Date) objs[i]).getTime()));
+      if ("java.time.LocalDateTime".equals(objs[i].getClass().getTypeName())) {
+        ps.setTimestamp(i + 1, new java.sql.Timestamp(((LocalDateTime) objs[i]).toInstant(ZoneOffset.of("+8")).toEpochMilli()));
       } else {
         ps.setObject(i + 1, objs[i]);
       }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8" import="java.util.ArrayList,java.util.List"%>
+         pageEncoding="UTF-8" import="java.util.ArrayList,java.util.List" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,138 +9,178 @@
 
 <head>
 
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <title>登录界面</title>
+    <link rel="icon" href="<%=path%>/content1/images/my.ico">
+    <script async="" src="file://www.google-analytics.com/analytics.js"></script>
+    <script src="<%=path%>/Content/dist/js/popper.min.js" type="text/javascript"></script>
+    <style>
+        * {
+            margin: 0;
+        }
 
-	<title>教务管理系统登录界面</title>
+        body {
+            background-image: url("<%=path%>/Content/img/bk-1.jpg");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+        }
 
-	<link rel="icon" href="<%=path%>/content1/images/my.ico">
-	<link rel="stylesheet" type="text/css" href="../Registration3_files/reset.css">
-	<link rel="stylesheet" type="text/css" href="../Registration3_files/t-sign.css">
-	<link rel="stylesheet" type="text/css" href="../Registration3_files/t-futura.css">
+        ul{
+            list-style: none;
+        }
 
-	<script async="" src="file://www.google-analytics.com/analytics.js"></script>
-	<script async="" src="../Registration3_files/analytics.js.下载"></script>
-	<script type="text/javascript" src="../Registration3_files/jquery-1.10.2.min.js.下载"></script>
-	<script type="text/javascript" src="../Registration3_files/t-sign-up.min.js.下载"></script>
-	<script type="text/javascript" src="../Registration3_files/t-counters.js.下载"></script>
-	<script type="text/javascript" src="../Registration3_files/jquery.saveutm.js.下载"></script>
+        input{
+            outline: none;
+        }
 
-	<script src="<%=path%>/content1/lib/jquery-1.7.2.min.js" type="text/javascript"></script>
-	<script src="<%=path%>/Content/dist/js/popper.min.js" type="text/javascript"></script>
-	<script src="<%=path%>/content1/lib/bootstrap/js/bootstrap.js"></script>
+        .middle {
+            width: 500px;
+            height: 350px;
+            margin: 10% auto;
+        }
 
-	<style>
-		.theme .ts-form{
-			background-image: linear-gradient(rgb(49, 99, 112),rgb(20,24,23));
-		}
+        .login{
+            width: inherit;
+            height: inherit;
+            box-shadow: 0 6px 13px 0 rgba(0,0,0,.1);
+            background-color: white;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+        }
 
-		#btnLogin{
-			position: relative;
-			padding: 10px 67px 11px;
-			margin: 50px 0 0 0;
-			border: 0;
-			background: #ffe8c7;
-			border-radius: 100px;
-			font-size: 18px;
-			color: #000;
-		}
-	</style>
+        #role{
+            width: 400px;
+            height: 40px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 35px 0;
+            padding: 2px 0;
+        }
 
-	<script type="text/javascript">
+        #role li{
+            width: 190px;
+            height: 36px;
+            text-align: center;
+            line-height: 36px;
 
-		$(function() {
+        }
 
-			<%
-				// 验证Session
-				if(session.getAttribute("state") == "false")
-				{
-//					System.out.println("登录失败");
-				}
-			%>
+        #role .active{
+            background-color: white;
+            border-radius: 10px;
+            color: #00a6a7;
+        }
 
-			//初始化登陆按钮点击事件
-			$("#btnLogin").click(function() {
+        #role li:hover{
+            cursor: pointer;
+            color: #00a6a7;
+        }
 
-				// 验证用户名的合法性（是否为空，为空就提示，不为空就提交表单到服务器）
-				if ($("#userName").val()==""){
+        .form{
+            width: 400px;
+            height: 80px;
+        }
 
-					//提示用户输入用户名
-					$("#lable1").show();
-					$("#lable1").html("<span style=\"color: rgb(229,192,79)\">请输入用户名</span>");
+        .form input{
+            width: 300px;
+            height: 36px;
+            margin: 0 0 20px 40px;
+            border: 1px solid #8a8989;
+            border-radius: 5px;
+            font-size: 16px;
+            padding-left: 5px;
+        }
 
-					//定位到输入框
-					$("#userName").focus();
+        .form input[type="button"]{
+            background-color: #00a6a7;
+            color: #fff;
+            border-color: #00a6a7;
+            margin-left: 45px;
 
-				}else {
+        }
 
-					//恢复原样
-					$("#lable1").html("UserName");
 
-					// 提交表单
-					$("#form1").submit();
-				}
+        .form input[type="button"]:hover{
+            cursor: pointer;
+        }
 
-			});
+        .form input:hover{
+            border-color: #00a6a7;
+        }
 
-			/*
-			防止lable拉垮
-			 */
-			function lablePre(){
+        .form input:focus{
+            border-color: #00a6a7;
+        }
 
-				$(this).next().hide();
 
-				if ($(this).val()==""){
-					$(this).next().show();
-				}
-			}
-
-			$("#userName,#passWord").change(lablePre);
-
-		});
-	</script>
+    </style>
 </head>
 
-<body class="theme" style="background-image: url(../Registration3_files/bg.jpg); background-attachment: fixed;">
+<body>
 
-<div class="ts-page">
-	<div class="ts-page-wrapper">
-		<div class="ts-form">
-			<div class="ts-form-logo" style="padding-bottom:0px;">
-			</div>
-			<div class="ts-errormsg" style="margin-top:30px;">
-				<div class="ts-errormsg__wrapper" id="errormsg"></div>
-			</div>
-			<form id="form1" name="form" action="<%=path%>/login" method="post">
-				<div class="ts-inputs">
-					<div style="position: absolute; left: -5000px;"><input type="text" name="tildachek9230"
-																		   tabindex="-1" value="" id="tildachek9230"></div>
-					<div class="ts-inputs__item"><label>
-						<input type="text" required="" name="userName" id="userName"
-															   class="ts-input ts-input_autofill-transparent" autocomplete="off">
-						<div id="lable1" class="ts-placeholder">UserName</div>
-					</label></div>
-					<div class="ts-inputs__item ts-password-input-item"><label><input type="password" required=""
-																					  name="passWord" id="passWord" class="ts-input" autocomplete="off">
-						<div  class="ts-placeholder">PassWord</div>
-					</label></div>
-
-					<div class="text-center item" style="padding-top:0px;">
-						<br><br><br><br>
-						<a id="btnLogin" class="btn btn-primary pull-right">Log in</a>
-					</div>
-				</div>
-			</form>
-			<br>
-			<div class="ts-terms-link" style="opacity:0.7; margin-top:10px;">
-				Dedicated to providing you with the best service You'll be satisfied</div>
-			<div class="ts-help-link" style="opacity:0.5; color:#fff;"><a href="../content1/egg.html">
-				Don't have an account yet, please click </a></div>
-		</div>
-	</div>
+<div class="middle">
+    <div class="login">
+        <div>
+            <ul id="role">
+                <li id="client" class="active">用 户</li>
+                <li id="employee" >员 工</li>
+            </ul>
+            <form class="form" action="#" method="post" enctype="application/json">
+                <input id="username" type="text" value="" placeholder="用户名">
+                <input id="password" type="password" value="" placeholder="密码">
+                <input id="loginBtn" type="button" value="登 录">
+            </form>
+        </div>
+    </div>
 </div>
+<script src="<%=path%>/Content/js/jquery-1.8.3.js" type="text/javascript"></script>
+<script type="text/javascript">
 
+    let role = 0;
+
+    $("#client").click(function () {
+        $("#client").attr('class','active')
+        $("#employee").attr('class','')
+        role = 1;
+    })
+
+    $("#employee").click(function () {
+        $("#employee").attr('class','active')
+        $("#client").attr('class','')
+        role = 1;
+    })
+
+    $("#loginBtn").click(function () {
+        let loginDataInfo = {
+            username: $("#username").val(),
+            password: $("#password").val(),
+            role: role
+        };
+        $.ajax({
+            url:"<%=path%>/login",
+            data: JSON.stringify(loginDataInfo),
+            dataType: 'json',
+            type: 'post',
+            contentType: 'application/json',
+            success:function (data){
+                if (data.code == 0){
+                    alert(data.msg)
+                }
+                console.log(data)
+            },
+            error: function (data) {
+
+            }
+        })
+    })
+</script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 package com.car.dao.impl;
 
 import com.car.entity.Order;
-
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -84,19 +84,37 @@ public class OrderDao extends BaseDaoImpl<Order> {
     if (type.equals("admin")) {
       String sql = "select * from `order`";
       executeQuery(sql);
-      ArrayList<Order> list = new ArrayList<>();
-      while (rs.next()) {
-        Order order = new Order();
-        DateTimeFormatter ftf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        order.setOrderTime(LocalDateTime.parse(rs.getString("orderTime"),ftf));
-        order.setOrderId(rs.getInt("orderId"));
-        order.setStatus(rs.getString("status"));
-        order.setDesc(rs.getString("desc"));
-
-        list.add(order);
-      }
-      return list;
+      return getOrders();
+    } else if (type.equals("client")) {
+      String sql = "select * from `order` where clientId=?";
+      executeQuery(sql, optId);
+      return getOrders();
+    } else if (type.equals("staff")) {
+      String sql = "select * from `order` where clientId in (select clientId from client where staffId = ?)";
+      executeQuery(sql, optId);
+      return getOrders();
     }
     return null;
+  }
+
+  /**
+   * 解析订单到list
+   *
+   * @return
+   * @throws SQLException
+   */
+  private List<Order> getOrders() throws SQLException {
+    ArrayList<Order> list = new ArrayList<>();
+    while (rs.next()) {
+      Order order = new Order();
+      DateTimeFormatter ftf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+      order.setOrderTime(LocalDateTime.parse(rs.getString("orderTime"), ftf));
+      order.setOrderId(rs.getInt("orderId"));
+      order.setStatus(rs.getString("status"));
+      order.setDesc(rs.getString("desc"));
+
+      list.add(order);
+    }
+    return list;
   }
 }

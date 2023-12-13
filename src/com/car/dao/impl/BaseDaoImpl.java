@@ -404,7 +404,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
    * @param t 对象
    * @throws Exception
    */
-  private void setFieldValue(Field f, Object t) throws Exception {
+  public void setFieldValue(Field f, Object t) throws Exception {
     if (f.getType().getName().equals(int.class.getName())) {
       f.set(t, rs.getInt(f.getName()));
     } else if (f.getType().getName().equals(String.class.getName())) {

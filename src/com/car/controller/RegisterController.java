@@ -1,7 +1,6 @@
 package com.car.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.car.dao.impl.UserDao;
 import com.car.result.Result;
 import com.car.utils.Utils;
 import java.io.IOException;
@@ -14,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /** 注册控制 */
 @WebServlet("/register")
 public class RegisterController extends HttpServlet {
-  UserDao userDao = new UserDao();
+
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)

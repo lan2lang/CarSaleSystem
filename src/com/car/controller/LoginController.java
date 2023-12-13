@@ -1,8 +1,13 @@
 package com.car.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.car.dao.impl.UserDao;
+import com.car.dao.impl.ClientDao;
+import com.car.dao.impl.StaffDao;
+import com.car.entity.Client;
+import com.car.entity.Staff;
+import com.car.entity.dto.LoginDto;
 import com.car.result.Result;
+import com.car.utils.Utils;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +19,8 @@ import javax.servlet.http.HttpSession;
 /** 登录控制 */
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
-  UserDao userDao = new UserDao();
+  ClientDao clientDao = new ClientDao();
+  StaffDao staffDao = new StaffDao();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -41,31 +47,42 @@ public class LoginController extends HttpServlet {
     res.setHeader("Content-Type", "application/json;charset=utf-8");
     //    res.setHeader("Content-Type", "text/html;charset=utf-8");
 
-    // 获取用户名与密码
-    String username = req.getParameter("username");
-    String password = req.getParameter("password");
+    // 解析请求体
+    LoginDto loginDto = JSON.parseObject(Utils.parse(req), LoginDto.class);
 
-    //     0为客户、1为店员
-    int role = Integer.parseInt(req.getParameter("role"));
-
-    if (role == 0) {
+    Object loginVo = null;
+    if (loginDto.getRole().equals("0")) {
       // 查询客户表
+      try {
+        loginVo = clientDao.login(new Client(loginDto.getUsername(), loginDto.getPassword()));
+
+      } catch (Exception e) {
+        throw new RuntimeException(e);
+      }
     } else {
       // 查询店员表
+      try {
+        loginVo = staffDao.login(new Staff(loginDto.getUsername(), loginDto.getPassword()));
+
+      } catch (Exception e) {
+        throw new RuntimeException(e);
+      }
     }
 
-    // 登录成功设置session，并跳转页面
-    Result.success();
-    HttpSession session = req.getSession();
-    session.setAttribute("role",0);
-    //设置客户id或店员id
+    if (loginVo != null) {
+      // 设置session
+      HttpSession session = req.getSession();
+      session.setAttribute("role", loginDto.getRole());
+      session.setAttribute("userinfo", loginVo);
 
-    //转发
-    req.getRequestDispatcher("/View/main.jsp").forward(req,res);
+      // 返回成功
+      Utils.returnJson(res, Result.success(loginVo));
+    } else {
+      // 转发
+      //    req.getRequestDispatcher("/View/main.jsp").forward(req, res);
 
-//    res.
-
-    // 登录失败，返回登录失败
-    res.getWriter().append(JSON.toJSONString(Result.error("用户名或密码错误")));
+      // 登录失败，返回登录失败
+      res.getWriter().append(JSON.toJSONString(Result.error("用户名或密码错误")));
+    }
   }
 }

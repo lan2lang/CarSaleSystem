@@ -1,23 +1,27 @@
 package com.car.utils;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.car.result.Result;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /** 工具类 */
-public class Utils<T> {
+public class Utils {
+
+  /** 返回json */
+  public static void returnJson(HttpServletResponse res, Result result) throws IOException {
+    res.getWriter().append(JSON.toJSONString(result));
+  }
 
   /** 根据返回行数判读是否为真 */
   public static boolean judge(int i) {
     return i != 0;
   }
 
-  /**
-   * 解析前端传过来的json
-   */
-  public static HashMap  parse(HttpServletRequest req ) throws IOException {
+  /** 解析前端传过来的json */
+  public static String parse(HttpServletRequest req) throws IOException {
     //  request.getReader();方法返回一个包含body体数据的BufferedReader；
     BufferedReader reader = req.getReader();
 
@@ -27,11 +31,6 @@ public class Utils<T> {
       readerStr = readerStr.concat(line);
     }
 
-    // 使用阿里的fastjson jar包处理json数据（这里是用map进行接收的，你也可以定义vo层容器类接收）
-    HashMap map = JSONObject.parseObject(readerStr, HashMap.class);
-
-    System.out.println(map.get("user"));
-
-    return map;
+    return readerStr;
   }
 }

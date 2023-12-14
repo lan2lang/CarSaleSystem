@@ -9,9 +9,24 @@ import java.util.List;
 /** 客户数据层 */
 public class StaffDao extends BaseDaoImpl<Staff> {
 
-  /**
-   * 查询指定员工id的业绩和排名
-   */
+  /** 查询指定员工id的业绩和排名 */
+
+  /** 查询员工详情 */
+  public Staff selectById(String staffId) throws Exception {
+    String sql = "select * from staff where staffId=?";
+    executeQuery(sql, staffId);
+    if (rs.next()) {
+      Staff staff = new Staff();
+      staff.setStaffId(rs.getInt("staffId"));
+      staff.setStaffNo(rs.getString("staffNo"));
+      staff.setStaffName(rs.getString("staffName"));
+      staff.setPassword(rs.getString("password"));
+      staff.setSex(rs.getString("sex"));
+      staff.setPhone(rs.getString("phone"));
+      return staff;
+    }
+    return null;
+  }
 
   /** 查询所有员工 */
   public List<Staff> selectAllStaff() throws Exception {

@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/CarSaleSystem</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="carsalesystem@localhost" uuid="ac628d9a-3853-4d4b-a532-b5c2d97f0c68">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/carsalesystem</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

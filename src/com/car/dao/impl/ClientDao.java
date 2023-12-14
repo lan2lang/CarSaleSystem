@@ -10,7 +10,9 @@ public class ClientDao extends BaseDaoImpl<Client> {
   public List<Client> selectClientsByStaff(int staffId) throws Exception {
     String sql =
         "select  clientNo,clientName,password,sex,phone,staffId from client where staffId=?";
-    return selectAll(Client.class, sql, staffId);
+    List<Client> list = selectAll(Client.class, sql, staffId);
+    close();
+    return list;
   }
 
   /**
@@ -22,14 +24,18 @@ public class ClientDao extends BaseDaoImpl<Client> {
   public int insert(Client client) throws Exception {
     String sql =
         "insert into Client (clientNo,clientName,password,sex,phone,staffId) values (?,?,?,?,?,?)";
-    return executeUpdate(
-        sql,
-        client.getClientNo(),
-        client.getClientName(),
-        client.getPassword(),
-        client.getSex(),
-        client.getPhone(),
-        client.getStaffId());
+    int i =
+        executeUpdate(
+            sql,
+            client.getClientNo(),
+            client.getClientName(),
+            client.getPassword(),
+            client.getSex(),
+            client.getPhone(),
+            client.getStaffId());
+
+    close();
+    return i;
   }
 
   /** 登录 */
@@ -56,8 +62,10 @@ public class ClientDao extends BaseDaoImpl<Client> {
       rs.next();
       client.setClientId(rs.getInt("clientId"));
 
+      close();
       return client;
     } else {
+      close();
       return null;
     }
   }

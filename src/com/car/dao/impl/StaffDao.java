@@ -64,6 +64,12 @@ public class StaffDao extends BaseDaoImpl<Staff> {
         // 根据数据类型来获取表中的值，赋值给对象中的字段（保证数据类型一致）
         setFieldValue(f, staff);
       }
+      // 查询客户ID
+      sql = "select staffId from staff where staffNo=?";
+      executeQuery(sql, staff.getStaffNo());
+
+      rs.next();
+      staff.setStaffId(rs.getInt("staffId"));
       return staff;
     } else {
       return null;

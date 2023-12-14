@@ -172,7 +172,7 @@
                                aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg">
-                        <span class="input-group-text" id="input-电话">电话</span>
+                        <span class="input-group-text" id="input-phone">电话</span>
                         <input id="modify-phone" type="text" class="form-control" aria-label="Sizing example input"
                                aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
@@ -243,7 +243,6 @@
     }
 
     function modifyEmploy(id){
-        console.log(id)
         $.ajax({
             url: "<%=path%>/detail?id=" + id,
             dataType: 'json',

@@ -20,7 +20,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <title>员工管理</title>
-    <link rel="icon" href="<%=path%>/content1/images/my.ico">
+    <link rel="stylesheet" href="<%=path%>/Content/dist/css/bootstrap.css">
+    <script src="<%=path%>/Content/dist/js/bootstrap.js"></script>
     <style>
         * {
             margin: 0;
@@ -33,23 +34,6 @@
             background-attachment: fixed;
         }
 
-        .btn {
-            width: 100px;
-            height: 40px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            margin: 15px 0 0 15px;
-            background-color: #ffc107;
-            border: 1px solid #ffc107;
-            border-radius: 5px;
-            box-shadow: 0 6px 13px 0 rgba(0, 0, 0, .1);
-            color: #fff;
-        }
-
-        .btn:hover, .button-color-red:hover, .button-color-yellow:hover {
-            cursor: pointer;
-        }
 
         .main {
             width: 1000px;
@@ -62,7 +46,7 @@
         .main-title, .main-context {
             width: 1000px;
             display: grid;
-            grid-template-columns: 200px 200px 200px 200px 200px;
+            grid-template-columns: 160px 160px 160px 160px 160px 200px;
             grid-template-rows: 40px;
             justify-items: center;
             align-items: center;
@@ -85,16 +69,6 @@
             border: 1px solid #dc3545;
         }
 
-        .button-color-dark {
-            background-color: #6c757d;
-            border: 1px solid #6c757d;
-        }
-
-        .button-color-green {
-            background-color: #198754;
-            border: 1px solid #198754;
-        }
-
         .button-color-yellow {
             background-color: #ffc107;
             border: 1px solid #ffc107;
@@ -113,7 +87,6 @@
             box-shadow: 0 6px 13px 0 rgba(0, 0, 0, .1);
             color: #fff;
         }
-
 
     </style>
 </head>
@@ -159,11 +132,9 @@
         </div>
 
         <div>
-            <button class="button-color-yellow">
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modify"
+                    onclick="modifyCar('<%=car.getCarId()%>')">
                 修改
-            </button>
-            <button class="button-color-red addBtn">
-                新增
             </button>
         </div>
     </div>
@@ -172,6 +143,10 @@
         }
     %>
 
+    <button type="button" class="button-color-red addBtn" data-bs-toggle="modal" data-bs-target="#add">
+        新增
+    </button>
+
 
     <!-- 修改的 弹窗 (bootstrap导入)-->
     <div class="modal fade" id="modify" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -179,28 +154,28 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modifyLabel">修改员工</h1>
+                    <h1 class="modal-title fs-5" id="modifyLabel">修改车辆</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="input-group input-group-lg mb-3">
-                        <span class="input-group-text" id="input-name">姓名</span>
-                        <input id="modify-name" type="text" class="form-control" aria-label="Sizing example input"
+                        <span class="input-group-text" id="input-brand">品牌</span>
+                        <input id="modify-brand" type="text" class="form-control" aria-label="Sizing example input"
                                aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg mb-3">
-                        <span class="input-group-text" id="input-password">密码</span>
-                        <input id="modify-password" type="text" class="form-control" aria-label="Sizing example input"
+                        <span class="input-group-text" id="input-model">型号</span>
+                        <input id="modify-model" type="text" class="form-control" aria-label="Sizing example input"
                                aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg mb-3">
-                        <span class="input-group-text" id="input-sex">性别</span>
-                        <input id="modify-sex" type="text" class="form-control" aria-label="Sizing example input"
+                        <span class="input-group-text" id="input-price">价格</span>
+                        <input id="modify-price" type="text" class="form-control" aria-label="Sizing example input"
                                aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg">
-                        <span class="input-group-text" id="input-电话">电话</span>
-                        <input id="modify-phone" type="text" class="form-control" aria-label="Sizing example input"
+                        <span class="input-group-text" id="input-count">库存数量</span>
+                        <input id="modify-count" type="text" class="form-control" aria-label="Sizing example input"
                                aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                 </div>
@@ -217,51 +192,137 @@
          aria-labelledby="addLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
+
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="addLabel">新增员工</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <form method="post" action="<%=path%>/upload" enctype="multipart/form-data" target="hidden_iframe">
+                        <div class="mb-3">
+                            <input class="form-control" onchange="this.form.submit()" type="file" id="formFile">
+                        </div>
+                    </form>
                     <div class="input-group input-group-lg mb-3">
-                        <span class="input-group-text" id="add-input-username">用户名</span>
-                        <input id="addUsername" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="wxw">
+                        <span class="input-group-text" id="add-input-brand">品牌</span>
+                        <input id="add-brand" type="text" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg mb-3">
-                        <span class="input-group-text" id="add-input-name">姓名</span>
-                        <input id="addName" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="wxw">
+                        <span class="input-group-text" id="add-input-model">型号</span>
+                        <input id="add-model" type="text" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg mb-3">
-                        <span class="input-group-text" id="add-input-password">密码</span>
-                        <input id="addPassword" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="123456">
+                        <span class="input-group-text" id="add-input-price">价格</span>
+                        <input id="add-price" type="text" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg mb-3">
-                        <span class="input-group-text" id="add-input-sex">性别</span>
-                        <input id="addSex" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="男">
-                    </div>
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-text" id="add-input-电话">电话</span>
-                        <input id="addPhone" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="13244445555">
+                        <span class="input-group-text" id="add-input-count">库存数量</span>
+                        <input id="add-count" type="text" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" onclick="addEmploy()">确认</button>
+                    <button type="button" class="btn btn-primary" onclick="addCar()">确认</button>
                 </div>
             </div>
         </div>
     </div>
-
+    
 </div>
-
+<iframe name="hidden_iframe" id="hidden_iframe" style="display: none"></iframe>
 
 <script src="<%=path%>/Content/js/jquery-1.8.3.js" type="text/javascript"></script>
 <script type="text/javascript">
+    let modifyInfo = {
+        carId: "",
+        brand: "",
+        model: "",
+        count: "",
+        price: "",
+        pic: "upload\baomax5.webp"
+    }
+    function modifyCar(id){
+        $.ajax({
+            url: "<%=path%>/detail?id=" + id,
+            dataType: 'json',
+            type: 'post',
+            contentType: 'application/json',
+            success: function (data) {
+                if (data.code === 0) {
+                    alert(data.msg)
+                } else {
+                    $("#modify-brand").val(data.data.brand)
+                    $("#modify-model").val(data.data.model)
+                    $("#modify-price").val(data.data.price)
+                    $("#modify-count").val(data.data.count)
+                    modifyInfo.carId = id;
+                    modifyInfo.pic = data.data.pic;
+                }
+            },
+            error: function () {
+                alert("修改失败")
+            }
+        })
+    }
 
+    $("#modify-submit").click(function (){
+
+        modifyInfo.brand = $("#modify-brand").val()
+        modifyInfo.model = $("#modify-model").val()
+        modifyInfo.price = $("#modify-price").val()
+        modifyInfo.count = $("#modify-count").val()
+        console.log(modifyInfo)
+        $.ajax({
+            url: "<%=path%>/car",
+            data: JSON.stringify(modifyInfo),
+            dataType: 'json',
+            type: 'put',
+            contentType: 'application/json',
+            success: function (data) {
+                if (data.code === 0) {
+                    alert(data.msg)
+                } else {
+                    window.location.reload()
+                }
+            },
+            error: function () {
+                alert("修改失败")
+            }
+        })
+
+    })
+
+    function addCar(){
+        let CarInfo = {
+            brand: $("#add-brand").val(),
+            model: $("#add-model").val(),
+            count: $("#add-count").val(),
+            price: $("#add-price").val(),
+            pic: <%=session.getAttribute("pic")%>
+        }
+        console.log(CarInfo);
+        $.ajax({
+            url: "<%=path%>/car",
+            data: JSON.stringify(CarInfo),
+            dataType: 'json',
+            type: 'post',
+            contentType: 'application/json',
+            success: function (data) {
+                if (data.code === 0) {
+                    alert(data.msg)
+                } else {
+                    window.location.reload()
+                }
+            },
+            error: function () {
+                alert("新增失败")
+            }
+        })
+    }
 </script>
 </body>
 </html>

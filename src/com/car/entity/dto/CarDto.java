@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarDto {
-    private String clientId;
+    private String carId;
     private String brand;
     private String price;
 

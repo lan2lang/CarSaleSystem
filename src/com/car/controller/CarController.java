@@ -39,6 +39,10 @@ public class CarController extends HttpServlet {
 
     // 调用dao
     try {
+
+//      if (carDto.getCarId()!=null){
+//
+//      }
       List<Car> cars = carDao.selectALLCar(carDto);
       Utils.returnJson(res, Result.success(cars));
     } catch (Exception e) {

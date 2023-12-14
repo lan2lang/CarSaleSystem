@@ -1,3 +1,7 @@
+<%@ page import="com.car.entity.Car" %>
+<%@ page import="com.car.dao.impl.CarDao" %>
+<%@ page import="com.car.entity.dto.CarDto" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ page %>
@@ -8,6 +12,13 @@
 <%--获取请求地址--%>
 <%
     String path = request.getContextPath();
+    CarDao carDao = new CarDao();
+    List<Car> cars = null;
+    try {
+        cars = carDao.selectALLCar(new CarDto("","",""));
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
 %>
 
 <head>
@@ -59,9 +70,11 @@
         }
 
         .main .piece img {
-            width: 400px;
+            width: 100%;
+            height: 340px;
             border-radius: 5px 5px 0 0;
             box-shadow: 0 6px 13px 0 rgba(0, 0, 0, .1);
+            object-fit: cover;
         }
 
         .main .piece .piece-left {
@@ -109,14 +122,19 @@
 <body>
 
 <div class="main">
-    <div class="piece">
-        <a href="<%=path%>/View/carDetail.jsp?carId=1">
-            <img src="<%=path%>/upload/bydwangchaoplus.jpg" alt="">
-            <div class="piece-left">王朝2023年冠军版</div>
-            <div class="piece-right">18万</div>
-        </a>
-    </div>
-
+    <%
+        for (Car car : cars) {
+    %>
+        <div class="piece">
+            <a href="<%=path%>/View/carDetail.jsp?carId=<%=car.getCarId()%>">
+                <img src="<%=path+car.getPic()%>" alt="">
+                <div class="piece-left"><%=car.getBrand()%>-<%=car.getModel()%></div>
+                <div class="piece-right"><%=car.getPrice()%>万</div>
+            </a>
+        </div>
+    <%
+        }
+    %>
 
 </div>
 <button id="myOrder" class="btn">

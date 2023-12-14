@@ -80,8 +80,8 @@ public class UploadController extends HttpServlet {
     String uploadPath =
         request.getServletContext().getRealPath("./") + File.separator + UPLOAD_DIRECTORY;
     // 当前项目路径
-//    String path = new File("").getCanonicalPath();
-//    String uploadPath = path + File.separator + "web" + File.separator + "upload";
+    //    String path = new File("").getCanonicalPath();
+    //    String uploadPath = path + File.separator + "web" + File.separator + "upload";
 
     // 如果目录不存在则创建
     File uploadDir = new File(uploadPath);
@@ -106,7 +106,9 @@ public class UploadController extends HttpServlet {
             System.out.println(filePath);
             // 保存文件到硬盘
             item.write(storeFile);
-            Utils.returnJson(response, Result.success(UPLOAD_DIRECTORY+File.separator+fileName));
+            request.getSession().setAttribute("pic", UPLOAD_DIRECTORY + File.separator + fileName);
+            Utils.returnJson(
+                response, Result.success(UPLOAD_DIRECTORY + File.separator + fileName));
           }
         }
       }

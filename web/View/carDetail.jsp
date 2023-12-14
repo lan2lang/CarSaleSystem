@@ -108,7 +108,7 @@
 <body>
 
 <div class="main">
-    <div class="img-contain"><img src="<%=path+car.getPic()%>" alt=""></div>
+    <div class="img-contain"><img src="<%=path+"\\"+car.getPic()%>" alt=""></div>
     <div class="main-content">
         <div style="font-size: 40px;font-weight: bold"><%=car.getModel()%></div>
         <div class="main-content-piece">

@@ -198,27 +198,27 @@
                     <div class="input-group input-group-lg mb-3">
                         <span class="input-group-text" id="add-input-username">用户名</span>
                         <input id="addUsername" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="wxw">
+                               aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg mb-3">
                         <span class="input-group-text" id="add-input-name">姓名</span>
                         <input id="addName" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="wxw">
+                               aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg mb-3">
                         <span class="input-group-text" id="add-input-password">密码</span>
                         <input id="addPassword" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="123456">
+                               aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg mb-3">
                         <span class="input-group-text" id="add-input-sex">性别</span>
                         <input id="addSex" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="男">
+                               aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="add-input-电话">电话</span>
                         <input id="addPhone" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="13244445555">
+                               aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                 </div>
                 <div class="modal-footer">

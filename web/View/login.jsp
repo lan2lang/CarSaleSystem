@@ -16,6 +16,7 @@
         throw new RuntimeException(e);
     }
     String path = request.getContextPath();
+    staffDao.close();
 %>
 
 <head>

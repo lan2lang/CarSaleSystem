@@ -18,6 +18,8 @@
   String userId = userinfo.substring(userinfo.indexOf(",") - 1, userinfo.indexOf(","));
   OrderDao orderDao = new OrderDao();
   List<Order> client = orderDao.selectOrdersByType(userName,userId);
+
+  orderDao.close();
 %>
 
 <head>

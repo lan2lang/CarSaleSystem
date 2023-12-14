@@ -17,7 +17,7 @@
     String clientId = userinfo.substring(userinfo.indexOf("clientId") + 9, userinfo.indexOf("clientId")+ 10);
     CarDao carDao = new CarDao();
     Car car = carDao.selectById(carId);
-
+    carDao.close();
 %>
 
 <head>

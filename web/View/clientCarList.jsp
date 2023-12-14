@@ -146,7 +146,7 @@
     %>
     <div class="piece">
         <a href="<%=path%>/View/carDetail.jsp?carId=<%=car.getCarId()%>">
-            <img src="<%=path+car.getPic()%>" alt="">
+            <img src="<%=path+"\\"+car.getPic()%>" alt="">
             <div class="piece-left"><%=car.getBrand()%>-<%=car.getModel()%>
             </div>
             <div class="piece-right"><%=car.getPrice()%>万</div>

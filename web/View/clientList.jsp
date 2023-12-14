@@ -1,6 +1,8 @@
 <%@ page import="com.car.dao.impl.OrderDao" %>
 <%@ page import="com.car.entity.Order" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.car.dao.impl.ClientDao" %>
+<%@ page import="com.car.entity.Client" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ page%>
@@ -11,6 +13,21 @@
 <%--获取请求地址--%>
 <%
   String path = request.getContextPath();
+  String userinfo = session.getAttribute("userinfo").toString();
+  String userId = "";
+  ClientDao clientDao = new ClientDao();
+  List<Client> clients = null;
+  // 是否是管理员
+  if (userinfo.contains("admin")) {
+    clients = clientDao.selectAll(Client.class);
+  } else {
+    // 获取员工id
+    userId = userinfo.substring(userinfo.indexOf(",") - 1, userinfo.indexOf(","));
+    clients = clientDao.selectClientsByStaff(Integer.parseInt(userId));
+  }
+
+
+  clientDao.close();
 %>
 
 <head>
@@ -43,7 +60,7 @@
     .main-title,.main-context{
       width: 1000px;
       display: grid;
-      grid-template-columns: 300px 250px 200px 250px;
+      grid-template-columns: 250px 250px 250px 250px;
       grid-template-rows: 40px;
       justify-items: center;
       align-items: center;
@@ -90,27 +107,27 @@
 
 <div class="main">
   <div class="main-title">
-    <div>订单详情</div>
-    <div>订单时间</div>
-    <div>订单状态</div>
-    <div>操作</div>
+    <div>系统用户名</div>
+    <div>姓名</div>
+    <div>性别</div>
+    <div>电话</div>
   </div>
 
+  <%
+    for (Client client : clients) {
+
+
+  %>
   <div class="main-context">
-    <div>dsakjdladjklaj</div>
-    <div>dsakjkdajkdla</div>
-    <div>
-      skjdkaldjkakj
-    </div>
-    <div>
-      <button class="button-color-yellow">
-        立即支付
-      </button>
-      <button class="button-color-red">
-        取消订单
-      </button>
-    </div>
+    <div><%=client.getClientNo()%></div>
+    <div><%=client.getClientName()%></div>
+    <div><%=client.getSex()%></div>
+    <div><%=client.getPhone()%></div>
   </div>
+
+  <%
+    }
+  %>
 </div>
 
 

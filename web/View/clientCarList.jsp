@@ -61,11 +61,10 @@
             margin: 10px auto;
             display: grid;
             grid-template-columns: 500px 500px;
-            grid-template-rows: 470px 470px;
-
         }
 
         .main .piece {
+            height: 470px;
             padding: 20px 50px 0 50px;
             display: grid;
             grid-template-columns: 400px;

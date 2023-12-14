@@ -8,7 +8,8 @@ import java.util.List;
 public class ClientDao extends BaseDaoImpl<Client> {
   /** 查询指定员工的客户 */
   public List<Client> selectClientsByStaff(int staffId) throws Exception {
-    String sql = "select  clientNo,clientName,password,sex,phone,staffId from client where staffId=?";
+    String sql =
+        "select  clientNo,clientName,password,sex,phone,staffId from client where staffId=?";
     return selectAll(Client.class, sql, staffId);
   }
 
@@ -36,6 +37,7 @@ public class ClientDao extends BaseDaoImpl<Client> {
     String sql = "select * from client where clientNo=? and password=?";
 
     executeQuery(sql, client.getClientNo(), client.getPassword());
+
     client = new Client();
     if (rs.next()) {
       // 拼接查询的列名
@@ -46,6 +48,13 @@ public class ClientDao extends BaseDaoImpl<Client> {
         // 根据数据类型来获取表中的值，赋值给对象中的字段（保证数据类型一致）
         setFieldValue(f, client);
       }
+
+      // 查询客户id
+      sql = "select clientId from client where clientNo=?";
+      executeQuery(sql, client.getClientNo());
+
+      rs.next();
+      client.setClientId(rs.getInt("clientId"));
       return client;
     } else {
       return null;

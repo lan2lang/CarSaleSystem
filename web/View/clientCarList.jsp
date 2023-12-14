@@ -23,6 +23,7 @@
         carDao.close();
     }
 
+
 %>
 
 <head>
@@ -120,6 +121,20 @@
         .btn:hover {
             cursor: pointer;
         }
+
+        .logoutbtn {
+            width: 100px;
+            height: 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            margin: 15px 0 0 15px;
+            background-color: #ffc107;
+            border: 1px solid #ffc107;
+            border-radius: 5px;
+            box-shadow: 0 6px 13px 0 rgba(0, 0, 0, .1);
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -146,12 +161,19 @@
     我的订单
 </button>
 
+<button id="logout" class="logoutbtn">退出登录</button>
+
 <script src="<%=path%>/Content/js/jquery-1.8.3.js" type="text/javascript"></script>
 <script type="text/javascript">
 
     // 前往订单页面
     $("#myOrder").click(function () {
         window.location.href = '<%=path%>/View/myOrder.jsp'
+    })
+
+    // 前往登录界面
+    $("#logout").click(function () {
+        window.location.href = '<%=path%>/View/login.jsp'
     })
 
     $(function () {

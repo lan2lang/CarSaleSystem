@@ -6,4 +6,10 @@
     <welcome-file-list>
         <welcome-file>/View/login.jsp</welcome-file>
     </welcome-file-list>
+
+    <!-- 设置session失效，单位分 -->
+    <session-config>
+        <session-timeout>100</session-timeout>
+    </session-config>
 </web-app>
+

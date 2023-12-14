@@ -12,11 +12,13 @@
     List<Staff> staff = null;
     try {
         staff = staffDao.selectAllStaff();
+
     } catch (Exception e) {
         throw new RuntimeException(e);
+    } finally {
+        staffDao.close();
     }
     String path = request.getContextPath();
-    staffDao.close();
 %>
 
 <head>
@@ -41,11 +43,11 @@
             background-attachment: fixed;
         }
 
-        ul{
+        ul {
             list-style: none;
         }
 
-        input,select{
+        input, select {
             outline: none;
         }
 
@@ -55,17 +57,17 @@
             margin: 10% auto;
         }
 
-        .login{
+        .login {
             width: inherit;
             height: inherit;
-            box-shadow: 0 6px 13px 0 rgba(0,0,0,.1);
+            box-shadow: 0 6px 13px 0 rgba(0, 0, 0, .1);
             background-color: white;
             border-radius: 15px;
             display: flex;
             justify-content: center;
         }
 
-        #role{
+        #role {
             width: 400px;
             height: 40px;
             background-color: #f1f1f1;
@@ -77,7 +79,7 @@
             padding: 2px 0;
         }
 
-        #role li{
+        #role li {
             width: 190px;
             height: 36px;
             text-align: center;
@@ -85,22 +87,22 @@
 
         }
 
-        #role .active{
+        #role .active {
             background-color: white;
             border-radius: 10px;
             color: #00a6a7;
         }
 
-        #role li:hover{
+        #role li:hover {
             cursor: pointer;
             color: #00a6a7;
         }
 
-        .form{
+        .form {
             width: 400px;
         }
 
-        .form select{
+        .form select {
             width: 146px;
             height: 40px;
             border: 1px solid #8a8989;
@@ -109,7 +111,7 @@
             padding-left: 5px;
         }
 
-        .form input{
+        .form input {
             width: 300px;
             height: 36px;
             margin: 0 0 20px 40px;
@@ -119,7 +121,7 @@
             padding-left: 5px;
         }
 
-        .form input[type="button"]{
+        .form input[type="button"] {
             background-color: #00a6a7;
             color: #fff;
             border-color: #00a6a7;
@@ -127,47 +129,47 @@
 
         }
 
-        #name{
+        #name {
             width: 150px;
         }
 
 
-        .form input[type="button"]:hover{
+        .form input[type="button"]:hover {
             cursor: pointer;
         }
 
-        .form input:hover{
+        .form input:hover {
             border-color: #00a6a7;
         }
 
-        .form input:focus{
+        .form input:focus {
             border-color: #00a6a7;
         }
 
-        #registerBtn{
+        #registerBtn {
             margin-top: 30px;
             color: #00a6a7;
         }
 
-        #backLogin{
+        #backLogin {
             color: #00a6a7;
             margin-bottom: 5px;
         }
 
-        #registerBtn:hover,#backLogin:hover{
+        #registerBtn:hover, #backLogin:hover {
             cursor: pointer;
         }
 
-        #clientPage{
+        #clientPage {
             display: block;
         }
 
-        #employeePage{
+        #employeePage {
             display: none;
             margin-top: 20px;
         }
 
-        #staffId{
+        #staffId {
             width: 310px;
             margin: 0 0 20px 40px;
         }
@@ -185,7 +187,7 @@
         <div id="clientPage">
             <ul id="role">
                 <li id="client" class="active">用 户</li>
-                <li id="employee" >员 工</li>
+                <li id="employee">员 工</li>
             </ul>
             <form class="form" action="#" method="post" enctype="application/json">
                 <input id="username" type="text" value="" placeholder="用户名">
@@ -208,13 +210,14 @@
 
                 <%-- 查询员工列表 --%>
                 <select id="staffId">
-                <%
-                    for (Staff staff1 : staff) {
-                %>
-                    <option value="<%=staff1.getStaffId()%>"><%=staff1.getStaffName()%></option>
-                <%
-                    }
-                %>
+                    <%
+                        for (Staff staff1 : staff) {
+                    %>
+                    <option value="<%=staff1.getStaffId()%>"><%=staff1.getStaffName()%>
+                    </option>
+                    <%
+                        }
+                    %>
                 </select>
                 <input id="register" type="button" value="注册">
             </form>
@@ -230,28 +233,28 @@
     let role = 0;
 
     // 进行注册的时候隐藏登录界面,显示注册界面
-    $("#registerBtn").click(function (){
+    $("#registerBtn").click(function () {
         $("#clientPage").hide();
         $("#employeePage").show();
     })
 
     // 进行登录的时候隐藏注册界面,显示登录界面
-    $("#backLogin").click(function (){
+    $("#backLogin").click(function () {
         $("#clientPage").show();
         $("#employeePage").hide();
     })
 
     // 用户和员工登录切换
     $("#client").click(function () {
-        $("#client").attr('class','active')
-        $("#employee").attr('class','')
+        $("#client").attr('class', 'active')
+        $("#employee").attr('class', '')
         role = 1;
     })
 
     // 用户和员工登录切换
     $("#employee").click(function () {
-        $("#employee").attr('class','active')
-        $("#client").attr('class','')
+        $("#employee").attr('class', 'active')
+        $("#client").attr('class', '')
         role = 1;
     })
 
@@ -267,13 +270,13 @@
 
         // 登录请求
         $.ajax({
-            url:"<%=path%>/login",
+            url: "<%=path%>/login",
             data: JSON.stringify(loginDataInfo),
             dataType: 'json',
             type: 'post',
             contentType: 'application/json',
-            success:function (data){
-                if (data.code === 0){
+            success: function (data) {
+                if (data.code === 0) {
                     alert(data.msg)
                 } else {
                     window.location.replace("<%=path%>/View/clientCarList.jsp")
@@ -299,13 +302,13 @@
 
         // 注册请求
         $.ajax({
-            url:"<%=path%>/register",
+            url: "<%=path%>/register",
             data: JSON.stringify(registerInfo),
             dataType: 'json',
             type: 'post',
             contentType: 'application/json',
-            success:function (data){
-                if (data.code === 0){
+            success: function (data) {
+                if (data.code === 0) {
                     alert(data.msg)
                 }
                 console.log(data)

@@ -15,12 +15,14 @@
     CarDao carDao = new CarDao();
     List<Car> cars = null;
     try {
-        cars = carDao.selectALLCar(new CarDto("","",""));
+        cars = carDao.selectALLCar(new CarDto("", "", ""));
+
     } catch (Exception e) {
         throw new RuntimeException(e);
+    } finally {
+        carDao.close();
     }
 
-    carDao.close();
 %>
 
 <head>
@@ -42,12 +44,12 @@
             background-attachment: fixed;
         }
 
-        a{
+        a {
             text-decoration: none;
-            color:inherit;
+            color: inherit;
         }
 
-        button{
+        button {
             text-transform: none;
             box-shadow: none;
         }
@@ -115,7 +117,7 @@
             color: #fff;
         }
 
-        .btn:hover{
+        .btn:hover {
             cursor: pointer;
         }
     </style>
@@ -127,13 +129,14 @@
     <%
         for (Car car : cars) {
     %>
-        <div class="piece">
-            <a href="<%=path%>/View/carDetail.jsp?carId=<%=car.getCarId()%>">
-                <img src="<%=path+car.getPic()%>" alt="">
-                <div class="piece-left"><%=car.getBrand()%>-<%=car.getModel()%></div>
-                <div class="piece-right"><%=car.getPrice()%>万</div>
-            </a>
-        </div>
+    <div class="piece">
+        <a href="<%=path%>/View/carDetail.jsp?carId=<%=car.getCarId()%>">
+            <img src="<%=path+car.getPic()%>" alt="">
+            <div class="piece-left"><%=car.getBrand()%>-<%=car.getModel()%>
+            </div>
+            <div class="piece-right"><%=car.getPrice()%>万</div>
+        </a>
+    </div>
     <%
         }
     %>
@@ -150,7 +153,7 @@
     $("#myOrder").click(function () {
         window.location.href = '<%=path%>/View/myOrder.jsp'
     })
-    
+
     $(function () {
 
     })

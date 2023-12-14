@@ -172,6 +172,90 @@
         }
     %>
 
+
+    <!-- 修改的 弹窗 (bootstrap导入)-->
+    <div class="modal fade" id="modify" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="modifyLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modifyLabel">修改员工</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group input-group-lg mb-3">
+                        <span class="input-group-text" id="input-name">姓名</span>
+                        <input id="modify-name" type="text" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-lg" value="">
+                    </div>
+                    <div class="input-group input-group-lg mb-3">
+                        <span class="input-group-text" id="input-password">密码</span>
+                        <input id="modify-password" type="text" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-lg" value="">
+                    </div>
+                    <div class="input-group input-group-lg mb-3">
+                        <span class="input-group-text" id="input-sex">性别</span>
+                        <input id="modify-sex" type="text" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-lg" value="">
+                    </div>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="input-电话">电话</span>
+                        <input id="modify-phone" type="text" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-lg" value="">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    <button id="modify-submit" type="button" class="btn btn-primary">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新增的 弹窗 (bootstrap导入)-->
+    <div class="modal fade" id="add" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="addLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addLabel">新增员工</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group input-group-lg mb-3">
+                        <span class="input-group-text" id="add-input-username">用户名</span>
+                        <input id="addUsername" type="text" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-lg" value="wxw">
+                    </div>
+                    <div class="input-group input-group-lg mb-3">
+                        <span class="input-group-text" id="add-input-name">姓名</span>
+                        <input id="addName" type="text" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-lg" value="wxw">
+                    </div>
+                    <div class="input-group input-group-lg mb-3">
+                        <span class="input-group-text" id="add-input-password">密码</span>
+                        <input id="addPassword" type="text" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-lg" value="123456">
+                    </div>
+                    <div class="input-group input-group-lg mb-3">
+                        <span class="input-group-text" id="add-input-sex">性别</span>
+                        <input id="addSex" type="text" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-lg" value="男">
+                    </div>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="add-input-电话">电话</span>
+                        <input id="addPhone" type="text" class="form-control" aria-label="Sizing example input"
+                               aria-describedby="inputGroup-sizing-lg" value="13244445555">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="addEmploy()">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 

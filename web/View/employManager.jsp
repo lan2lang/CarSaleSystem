@@ -198,27 +198,27 @@
                     <div class="input-group input-group-lg mb-3">
                         <span class="input-group-text" id="add-input-username">用户名</span>
                         <input id="addUsername" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="wxw">
+                               aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg mb-3">
                         <span class="input-group-text" id="add-input-name">姓名</span>
                         <input id="addName" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="wxw">
+                               aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg mb-3">
                         <span class="input-group-text" id="add-input-password">密码</span>
                         <input id="addPassword" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="123456">
+                               aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg mb-3">
                         <span class="input-group-text" id="add-input-sex">性别</span>
                         <input id="addSex" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="男">
+                               aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="add-input-电话">电话</span>
                         <input id="addPhone" type="text" class="form-control" aria-label="Sizing example input"
-                               aria-describedby="inputGroup-sizing-lg" value="13244445555">
+                               aria-describedby="inputGroup-sizing-lg" value="">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -255,7 +255,7 @@
                 } else {
                     $("#modify-name").val(data.data.staffName)
                     $("#modify-password").val(data.data.password)
-                    $("#modify-sex").val(data.data.password)
+                    $("#modify-sex").val(data.data.sex)
                     $("#modify-phone").val(data.data.phone)
                     modifyInfo.staffNo = data.data.staffNo;
                     modifyInfo.staffId = data.data.staffId;
@@ -268,7 +268,30 @@
     }
 
     $("#modify-submit").click(function (){
-        modifyInfo
+
+        modifyInfo.staffName = $("#modify-name").val()
+        modifyInfo.password = $("#modify-password").val()
+        modifyInfo.sex = $("#modify-sex").val()
+        modifyInfo.phone = $("#modify-phone").val()
+        console.log(modifyInfo)
+        $.ajax({
+            url: "<%=path%>/staff",
+            data: JSON.stringify(modifyInfo),
+            dataType: 'json',
+            type: 'put',
+            contentType: 'application/json',
+            success: function (data) {
+                if (data.code === 0) {
+                    alert(data.msg)
+                } else {
+                    window.location.reload()
+                }
+            },
+            error: function () {
+                alert("修改失败")
+            }
+        })
+
     })
 
 

@@ -255,7 +255,7 @@
                 } else {
                     $("#modify-name").val(data.data.staffName)
                     $("#modify-password").val(data.data.password)
-                    $("#modify-sex").val(data.data.password)
+                    $("#modify-sex").val(data.data.sex)
                     $("#modify-phone").val(data.data.phone)
                     modifyInfo.staffNo = data.data.staffNo;
                     modifyInfo.staffId = data.data.staffId;
@@ -268,7 +268,30 @@
     }
 
     $("#modify-submit").click(function (){
-        modifyInfo
+
+        modifyInfo.staffName = $("#modify-name").val()
+        modifyInfo.password = $("#modify-password").val()
+        modifyInfo.sex = $("#modify-sex").val()
+        modifyInfo.phone = $("#modify-phone").val()
+        console.log(modifyInfo)
+        $.ajax({
+            url: "<%=path%>/staff",
+            data: JSON.stringify(modifyInfo),
+            dataType: 'json',
+            type: 'put',
+            contentType: 'application/json',
+            success: function (data) {
+                if (data.code === 0) {
+                    alert(data.msg)
+                } else {
+                    window.location.reload()
+                }
+            },
+            error: function () {
+                alert("修改失败")
+            }
+        })
+
     })
 
 

@@ -9,9 +9,13 @@ import java.util.List;
 /** 客户数据层 */
 public class StaffDao extends BaseDaoImpl<Staff> {
 
+  /**
+   * 查询指定员工id的业绩和排名
+   */
+
   /** 查询所有员工 */
   public List<Staff> selectAllStaff() throws Exception {
-    String sql = "select staffId,staffNo,staffName,password,sex,phone from Staff";
+    String sql = "select staffId,staffNo,staffName,password,sex,phone from Staff where staffId!=1;";
     executeQuery(sql);
     ArrayList<Staff> list = new ArrayList<>();
     while (rs.next()) {

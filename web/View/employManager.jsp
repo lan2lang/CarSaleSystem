@@ -1,5 +1,5 @@
-<%@ page import="com.car.dao.impl.OrderDao" %>
-<%@ page import="com.car.entity.Order" %>
+<%@ page import="com.car.dao.impl.StaffDao" %>
+<%@ page import="com.car.entity.Staff" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
@@ -11,6 +11,16 @@
 <%--获取请求地址--%>
 <%
   String path = request.getContextPath();
+  StaffDao staffDao = new StaffDao();
+  List<Staff> staff = null;
+  try {
+    staff = staffDao.selectAllStaff();
+  } catch (Exception e) {
+    throw new RuntimeException(e);
+  } finally {
+    staffDao.close();
+  }
+
 %>
 
 <head>
@@ -44,7 +54,7 @@
     .main-title,.main-context{
       width: 1000px;
       display: grid;
-      grid-template-columns: 300px 250px 200px 250px;
+      grid-template-columns: 160px 160px 160px 160px 160px 200px;
       grid-template-rows: 40px;
       justify-items: center;
       align-items: center;
@@ -72,8 +82,6 @@
       border: 1px solid #ffc107;
     }
 
-
-
   </style>
 </head>
 
@@ -81,29 +89,35 @@
 
 <div class="main">
   <div class="main-title">
-    <div>订单详情</div>
-    <div>订单时间</div>
-    <div>订单状态</div>
+    <div>用户名</div>
+    <div>姓名</div>
+    <div>密码</div>
+    <div>性别</div>
+    <div>电话</div>
     <div>操作</div>
   </div>
 
-  <div class="main-context">
-    <div>dsakjdladjklaj</div>
-    <div>dsakjkdajkdla</div>
-    <div>
-      skjdkaldjkakj
-    </div>
-    <div>
-      <button class="button-color-yellow">
-        立即支付
-      </button>
-      <button class="button-color-red">
-        取消订单
-      </button>
-    </div>
-  </div>
-</div>
+  <%
+    for (Staff staff1 : staff) {
+  %>
 
+    <div class="main-context">
+      <div><%=staff1.getStaffNo()%></div>
+      <div><%=staff1.getStaffName()%></div>
+      <div><%=staff1.getPassword()%></div>
+      <div><%=staff1.getSex()%></div>
+      <div><%=staff1.getPhone()%></div>
+      <div>
+        <button class="button-color-yellow" onclick="text('<%=staff1.getStaffId()%>')">
+          修改员工
+        </button>
+      </div>
+    </div>
+
+  <%
+    }
+  %>
+</div>
 
 <script src="<%=path%>/Content/js/jquery-1.8.3.js" type="text/javascript"></script>
 <script type="text/javascript">

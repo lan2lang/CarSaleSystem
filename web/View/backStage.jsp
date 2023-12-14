@@ -8,6 +8,12 @@
 <%--获取请求地址--%>
 <%
     String path = request.getContextPath();
+    String userinfo = session.getAttribute("userinfo").toString();
+    String username = "";
+    // 是否是管理员
+    if (userinfo.contains("admin")) {
+        username = "admin";
+    }
 %>
 
 <head>
@@ -58,7 +64,6 @@
         .main div iframe{
             width: 99%;
             height: 99%;
-            background-color: #ffc107;
             overflow: hidden;
         }
     </style>
@@ -79,9 +84,16 @@
         <div onclick="changeSrc('<%=path%>/View/clientList.jsp')">
             客户查询
         </div>
-        <div onclick="changeSrc('<%=path%>/View/carManager.jsp')">
+        <%
+            if ("admin".equals(username)){
+
+        %>
+        <div onclick="changeSrc('<%=path%>/View/employManager.jsp')">
             员工管理
         </div>
+        <%
+            }
+        %>
     </div>
 
 <%--    展示实际页面(页面里面嵌套一个页面)--%>

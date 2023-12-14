@@ -279,7 +279,13 @@
                 if (data.code === 0) {
                     alert(data.msg)
                 } else {
-                    window.location.replace("<%=path%>/View/clientCarList.jsp")
+                    if (loginDataInfo.role === 0) {
+                        window.location.replace("<%=path%>/View/clientCarList.jsp")
+                    }
+                    if (loginDataInfo.role === 1){
+                        window.location.replace("<%=path%>/View/backStage.jsp")
+                    }
+
                 }
             },
             error: function () {

@@ -1,7 +1,3 @@
-<%@ page import="com.car.entity.Car" %>
-<%@ page import="com.car.dao.impl.CarDao" %>
-<%@ page import="com.car.entity.dto.CarDto" %>
-<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ page %>
@@ -71,25 +67,31 @@
 <body>
 
 <div class="main">
+
+<%--    页面切换--%>
     <div class="main-nav">
-        <div>
+        <div onclick="changeSrc('<%=path%>/View/carManager.jsp')">
             车辆管理
         </div>
-        <div>
+        <div onclick="changeSrc('<%=path%>/View/myOrder.jsp')">
             订单管理
         </div>
-        <div>
+        <div onclick="changeSrc('<%=path%>/View/myOrder.jsp')">
             员工管理
         </div>
     </div>
+
+<%--    展示实际页面(页面里面嵌套一个页面)--%>
     <div>
-        <iframe id="iframeSrc" src="<%=path%>/View/myOrder.jsp"></iframe>
+        <iframe id="iframeSrc" src="<%=path%>/View/carManager.jsp"></iframe>
     </div>
 </div>
 
 <script src="<%=path%>/Content/js/jquery-1.8.3.js" type="text/javascript"></script>
 <script type="text/javascript">
-
+    function changeSrc(src){
+        $("#iframeSrc").attr('src',src)
+    }
 </script>
 </body>
 </html>

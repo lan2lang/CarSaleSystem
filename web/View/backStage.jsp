@@ -36,7 +36,7 @@
             grid-template-rows: repeat(4,60px);
             justify-items: center;
             align-items: center;
-            background-color: #00a6a7;
+            background-color: #6a97ac;
             color: #fff;
             padding-top: 20px;
         }
@@ -52,7 +52,7 @@
 
         .main .main-nav div:hover{
             cursor: pointer;
-            background-color: #049898;
+            background-color: #2d728b;
         }
 
         .main div iframe{

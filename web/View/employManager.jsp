@@ -29,7 +29,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <title>车辆管理</title>
-  <link rel="icon" href="<%=path%>/content1/images/my.ico">
+  <link rel="stylesheet" href="<%=path%>/Content/dist/css/bootstrap.css">
+  <script src="<%=path%>/Content/dist/js/bootstrap.js"></script>
   <style>
     * {
       margin: 0;
@@ -108,7 +109,7 @@
       <div><%=staff1.getSex()%></div>
       <div><%=staff1.getPhone()%></div>
       <div>
-        <button class="button-color-yellow" onclick="text('<%=staff1.getStaffId()%>')">
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modify" onclick="text('<%=staff1.getStaffId()%>')">
           修改员工
         </button>
       </div>
@@ -117,6 +118,83 @@
   <%
     }
   %>
+
+  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#add">
+    新增员工
+  </button>
+
+
+  <!-- 修改的弹窗 (bootstrap导入)-->
+  <div class="modal fade" id="modify" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modifyLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modifyLabel">修改员工</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group input-group-lg mb-3" >
+            <span class="input-group-text" id="input-name">姓名</span>
+            <input id="modify-name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+          </div>
+          <div class="input-group input-group-lg mb-3">
+            <span class="input-group-text" id="input-password">密码</span>
+            <input id="modify-password" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+          </div>
+          <div class="input-group input-group-lg mb-3">
+            <span class="input-group-text" id="input-sex">性别</span>
+            <input id="modify-sex" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+          </div>
+          <div class="input-group input-group-lg">
+            <span class="input-group-text" id="input-电话">电话</span>
+            <input id="modify-phone" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+          <button id="modify-submit" type="button" class="btn btn-primary">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 新增的弹窗 (bootstrap导入)-->
+  <div class="modal fade" id="add" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="addLabel">修改员工</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group input-group-lg mb-3" >
+            <span class="input-group-text" id="add-input-username">用户名</span>
+            <input id="add-username" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+          </div>
+          <div class="input-group input-group-lg mb-3" >
+            <span class="input-group-text" id="add-input-name">姓名</span>
+            <input id="add-name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+          </div>
+          <div class="input-group input-group-lg mb-3">
+            <span class="input-group-text" id="add-input-password">密码</span>
+            <input id="add-password" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+          </div>
+          <div class="input-group input-group-lg mb-3">
+            <span class="input-group-text" id="add-input-sex">性别</span>
+            <input id="add-sex" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+          </div>
+          <div class="input-group input-group-lg">
+            <span class="input-group-text" id="add-input-电话">电话</span>
+            <input id="add-phone" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+          <button id="add-submit" type="button" class="btn btn-primary">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="<%=path%>/Content/js/jquery-1.8.3.js" type="text/javascript"></script>

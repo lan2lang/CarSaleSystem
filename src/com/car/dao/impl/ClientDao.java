@@ -55,6 +55,7 @@ public class ClientDao extends BaseDaoImpl<Client> {
 
       rs.next();
       client.setClientId(rs.getInt("clientId"));
+
       return client;
     } else {
       return null;

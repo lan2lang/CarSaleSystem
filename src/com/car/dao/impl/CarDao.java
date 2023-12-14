@@ -7,9 +7,11 @@ import java.util.List;
 
 /** 车辆数据层 */
 public class CarDao extends BaseDaoImpl<Car> {
-
+//public static void main(String[] args) throws Exception {
+//    System.out.println(new CarDao().selectById("1"));
+//}
   /** 查询车辆详情 carId */
-  public Car selectById(String carId) throws Exception {
+  public  Car selectById(String carId) throws Exception {
     String sql = "select * from car where carId=?";
     executeQuery(sql, carId);
 

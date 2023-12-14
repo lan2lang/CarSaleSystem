@@ -33,6 +33,7 @@ public class OrderDao extends BaseDaoImpl<Order> {
 
     sql = "select brand ,model  from car  where carId=?";
     executeQuery(sql, order.getCarId());
+
     rs.next();
     String brand = rs.getString("brand");
     String model = rs.getString("model");

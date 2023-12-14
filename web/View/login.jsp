@@ -248,7 +248,7 @@
     $("#client").click(function () {
         $("#client").attr('class', 'active')
         $("#employee").attr('class', '')
-        role = 1;
+        role = 0;
     })
 
     // 用户和员工登录切换

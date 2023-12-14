@@ -58,7 +58,7 @@
         .main-title,.main-context{
             width: 1000px;
             display: grid;
-            grid-template-columns: 300px 250px 200px 250px;
+            grid-template-columns: 200px 200px 200px 200px 200px;
             grid-template-rows: 40px;
             justify-items: center;
             align-items: center;
@@ -96,18 +96,37 @@
             border: 1px solid #ffc107;
         }
 
+        .addBtn{
+            width: 100px;
+            height: 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            margin: 15px 0 0 15px;
+            /*background-color: #ffc107;*/
+            /*border: 1px solid #ffc107;*/
+            border-radius: 5px;
+            box-shadow: 0 6px 13px 0 rgba(0, 0, 0, .1);
+            color: #fff;
+        }
+
 
 
     </style>
 </head>
 
 <body>
+<%
+//获取车辆列表
 
+
+%>
 <div class="main">
     <div class="main-title">
-        <div>订单详情</div>
-        <div>订单时间</div>
-        <div>订单状态</div>
+        <div>品牌</div>
+        <div>型号</div>
+        <div>价格</div>
+        <div>库存数量</div>
         <div>操作</div>
     </div>
 
@@ -118,11 +137,14 @@
             skjdkaldjkakj
         </div>
         <div>
+            skjdkaldjkakj
+        </div>
+        <div>
             <button class="button-color-yellow">
-                立即支付
+                修改
             </button>
-            <button class="button-color-red">
-                取消订单
+            <button class="button-color-red addBtn">
+                新增
             </button>
         </div>
     </div>

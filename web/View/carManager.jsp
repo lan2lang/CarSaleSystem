@@ -122,9 +122,9 @@
 <%
     //获取车辆列表
     CarDao carDao = new CarDao();
-    List<Car> cars=null;
+    List<Car> cars = null;
     try {
-         cars = carDao.selectALLCar(new CarDto("", "", ""));
+        cars = carDao.selectALLCar(new CarDto("", "", ""));
     } catch (Exception e) {
         e.printStackTrace();
     } finally {
@@ -144,31 +144,34 @@
 
     <%
         if (cars != null) {
-            for (Car car : cars){
-        %>
-        <div class="main-context">
-            <div><%=car.getBrand()%></div>
-            <div><%=car.getModel()%></div>
-            <div>
-                <%=car.getPrice()%>万
-            </div>
-            <div>
-                <%=car.getCount()%>辆
-            </div>
+            for (Car car : cars) {
+    %>
+    <div class="main-context">
+        <div><%=car.getBrand()%>
+        </div>
+        <div><%=car.getModel()%>
+        </div>
+        <div>
+            <%=car.getPrice()%>万
+        </div>
+        <div>
+            <%=car.getCount()%>辆
+        </div>
 
-            <div>
-                <button class="button-color-yellow">
-                    修改
-                </button>
-                <button class="button-color-red addBtn">
-                    新增
-                </button>
-            </div>
-            <%
-                }
-            }
-        %>
+        <div>
+            <button class="button-color-yellow">
+                修改
+            </button>
+            <button class="button-color-red addBtn">
+                新增
+            </button>
+        </div>
     </div>
+    <%
+            }
+        }
+    %>
+
 </div>
 
 

@@ -198,9 +198,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="<%=path%>/upload" enctype="multipart/form-data" target="hidden_iframe">
+                    <form method="post" action="<%=path%>/upload" enctype="multipart/form-data" id="form">
                         <div class="mb-3">
-                            <input class="form-control" onchange="this.form.submit()" type="file" id="formFile">
+                            <input class="form-control" onchange="submitImg()" type="file" id="formFile">
                         </div>
                     </form>
                     <div class="input-group input-group-lg mb-3">
@@ -243,8 +243,9 @@
         model: "",
         count: "",
         price: "",
-        pic: "upload\baomax5.webp"
+        pic: ""
     }
+    let picUrl = "";
     function modifyCar(id){
         $.ajax({
             url: "<%=path%>/detail?id=" + id,
@@ -296,18 +297,38 @@
 
     })
 
+    function submitImg(){
+        let formData = new FormData();
+        formData.append("file", $("#formFile")[0].files[0]);
+        $.ajax({
+            url: "<%=path%>/upload",
+            type: "post",
+            data: formData,
+            processData: false, // 告诉jQuery不要去处理发送的数据
+            contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+            dataType: 'text',
+            success: function(data) {
+                let params = JSON.parse(data)
+                picUrl = params.data
+            },
+            error: function(data) {
+
+            }
+        });
+    }
+
     function addCar(){
-        let CarInfo = {
+        let carInfo = {
             brand: $("#add-brand").val(),
             model: $("#add-model").val(),
             count: $("#add-count").val(),
             price: $("#add-price").val(),
-            pic: <%=session.getAttribute("pic")%>
+            pic: picUrl
         }
-        console.log(CarInfo);
+
         $.ajax({
             url: "<%=path%>/car",
-            data: JSON.stringify(CarInfo),
+            data: JSON.stringify(carInfo),
             dataType: 'json',
             type: 'post',
             contentType: 'application/json',

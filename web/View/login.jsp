@@ -28,7 +28,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <title>登录界面</title>
-    <link rel="icon" href="<%=path%>/content1/images/my.ico">
     <script async="" src="file://www.google-analytics.com/analytics.js"></script>
     <script src="<%=path%>/Content/dist/js/popper.min.js" type="text/javascript"></script>
     <style>

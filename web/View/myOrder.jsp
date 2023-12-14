@@ -47,7 +47,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <title>订单管理</title>
-    <link rel="icon" href="<%=path%>/content1/images/my.ico">
     <style>
         * {
             margin: 0;

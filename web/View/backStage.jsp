@@ -76,7 +76,10 @@
         <div onclick="changeSrc('<%=path%>/View/myOrder.jsp')">
             订单管理
         </div>
-        <div onclick="changeSrc('<%=path%>/View/myOrder.jsp')">
+        <div onclick="changeSrc('<%=path%>/View/clientList.jsp')">
+            客户查询
+        </div>
+        <div onclick="changeSrc('<%=path%>/View/carManager.jsp')">
             员工管理
         </div>
     </div>

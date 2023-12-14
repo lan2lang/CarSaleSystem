@@ -18,8 +18,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
-  <title>车辆管理</title>
-  <link rel="icon" href="<%=path%>/content1/images/my.ico">
+  <title>客户查询</title>
   <style>
     * {
       margin: 0;
@@ -65,6 +64,16 @@
     .button-color-red{
       background-color: #dc3545;
       border: 1px solid #dc3545;
+    }
+
+    .button-color-dark{
+      background-color: #6c757d;
+      border: 1px solid #6c757d;
+    }
+
+    .button-color-green{
+      background-color: #198754;
+      border: 1px solid #198754;
     }
 
     .button-color-yellow{

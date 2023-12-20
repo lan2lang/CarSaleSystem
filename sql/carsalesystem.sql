@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 14/12/2023 20:50:54
+ Date: 20/12/2023 15:22:46
 */
 
 SET NAMES utf8mb4;
@@ -29,22 +29,19 @@ CREATE TABLE `car`  (
   `price` int NULL DEFAULT NULL,
   `pic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
   PRIMARY KEY (`carId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of car
 -- ----------------------------
-INSERT INTO `car` VALUES (1, '比亚迪', '王朝2023年冠军版', 20, 20, '/upload/bydwangchaoplus.jpg');
-INSERT INTO `car` VALUES (2, '比亚迪', '海豹', 40, 10, '/upload/bydhaibao.jpg');
-INSERT INTO `car` VALUES (3, '保时捷', '991', 10, 85, 'upload\\bydhaibao.jpg');
-INSERT INTO `car` VALUES (4, '保时捷', '991', 10, 85, 'upload\\bydwangchaoplus.jpg');
-INSERT INTO `car` VALUES (5, '奥迪', 'a7', 20, 65, 'upload\\aodia7.jpg');
-INSERT INTO `car` VALUES (6, '奥迪', 's7', 10, 105, 'upload\\aodis7.jpg');
-INSERT INTO `car` VALUES (7, '宝马', 'X5', 30, 75, 'upload\\baomax5.webp');
-INSERT INTO `car` VALUES (8, '宝马', 'X6', 25, 80, 'upload\\baomax5.webp');
-INSERT INTO `car` VALUES (9, '长安', 'uni', 50, 35, 'upload\\changan-uni.png');
-INSERT INTO `car` VALUES (10, '大众', 'GTD', 10, 100, 'upload\\dazhong-gtd.jpg');
-INSERT INTO `car` VALUES (11, '马自达', 'new', 20, 45, 'upload\\mazida-new.jpg');
+INSERT INTO `car` VALUES (13, '奥迪', 'a7', 10, 41, 'upload\\奥迪-a7.jpg');
+INSERT INTO `car` VALUES (14, '大众', 'GTD', 20, 34, 'upload\\大众-GTD.jpg');
+INSERT INTO `car` VALUES (15, '奥迪', 's7', 5, 103, 'upload\\奥迪-s7.jpg');
+INSERT INTO `car` VALUES (16, '宝马', 'x5', 10, 59, 'upload\\宝马-x5.webp');
+INSERT INTO `car` VALUES (17, '比亚迪', '海豹', 20, 18, 'upload\\比亚迪-海豹.jpg');
+INSERT INTO `car` VALUES (18, '比亚迪', '王朝plus', 15, 22, 'upload\\比亚迪-王朝plus.jpg');
+INSERT INTO `car` VALUES (19, '马自达', '新款', 100, 45, 'upload\\马自达-新款.jpg');
+INSERT INTO `car` VALUES (20, '长安', 'uni', 2, 25, 'upload\\长安-uni.png');
 
 -- ----------------------------
 -- Table structure for client
@@ -83,16 +80,12 @@ CREATE TABLE `order`  (
   `carId` int NULL DEFAULT NULL,
   `orderTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`orderId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES (2, '已取消', '客户：李富;\n店员：zhangsan;\n车辆：比亚迪 王朝2023年冠军版', 1, 1, '2023-12-14 15:41:07');
-INSERT INTO `order` VALUES (3, '已取消', '客户：李富;\n店员：zhangsan;\n车辆：比亚迪 王朝2023年冠军版', 1, 1, '2023-12-14 16:01:09');
-INSERT INTO `order` VALUES (4, '待确认', '客户：李富;\n店员：zhangsan;\n车辆：比亚迪 王朝2023年冠军版', 1, 1, '2023-12-14 16:01:13');
-INSERT INTO `order` VALUES (5, '待确认', '客户：李富;\n店员：zhangsan;\n车辆：比亚迪 海豹', 1, 2, '2023-12-14 16:01:19');
-INSERT INTO `order` VALUES (6, '待确认', '客户：客户1;\n店员：zhangsan;\n车辆：保时捷 991', 5, 3, '2023-12-14 18:41:41');
+INSERT INTO `order` VALUES (7, '已完成', '客户：客户1;\n店员：zhangsan;\n车辆：奥迪 s7', 5, 15, '2023-12-20 15:22:11');
 
 -- ----------------------------
 -- Table structure for staff

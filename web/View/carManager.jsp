@@ -12,6 +12,7 @@
 <%--获取请求地址--%>
 <%
     String path = request.getContextPath();
+
 %>
 
 <head>

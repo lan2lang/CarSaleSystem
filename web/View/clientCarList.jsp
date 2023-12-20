@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.car.entity.Car" %>
 <%@ page import="com.car.dao.impl.CarDao" %>
 <%@ page import="com.car.entity.dto.CarDto" %>
@@ -159,7 +160,10 @@
     我的订单
 </button>
 
-<button id="logout" class="logoutbtn">退出登录</button>
+<c:if test="${sessionScope.role==0}">
+    <button id="logout" class="logoutbtn">退出登录</button>
+</c:if>
+
 
 <script src="<%=path%>/Content/js/jquery-1.8.3.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -171,7 +175,7 @@
 
     // 前往登录界面
     $("#logout").click(function () {
-        window.location.href = '<%=path%>/View/login.jsp'
+        window.location.replace ('<%=path%>/View/login.jsp')
     })
 
     $(function () {

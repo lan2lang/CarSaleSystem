@@ -231,7 +231,7 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 <iframe name="hidden_iframe" id="hidden_iframe" style="display: none"></iframe>
 
@@ -310,6 +310,7 @@
             success: function(data) {
                 let params = JSON.parse(data)
                 picUrl = params.data
+                console.log(picUrl)
             },
             error: function(data) {
 
@@ -323,8 +324,9 @@
             model: $("#add-model").val(),
             count: $("#add-count").val(),
             price: $("#add-price").val(),
-            pic: picUrl
+            pic: picUrl.toString()
         }
+        console.log(carInfo)
 
         $.ajax({
             url: "<%=path%>/car",

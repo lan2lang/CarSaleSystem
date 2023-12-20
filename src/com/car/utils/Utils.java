@@ -2,12 +2,17 @@ package com.car.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.car.result.Result;
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** 工具类 */
+
 public class Utils {
 
   /** 返回json */
@@ -30,7 +35,8 @@ public class Utils {
     while ((line = reader.readLine()) != null) {
       readerStr = readerStr.concat(line);
     }
-
+//    readerStr = Arrays.toString(readerStr.getBytes(StandardCharsets.UTF_8));
+//    System.out.println(readerStr);
     return readerStr;
   }
 }

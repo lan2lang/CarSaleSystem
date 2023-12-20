@@ -22,7 +22,7 @@ public class UploadController extends HttpServlet {
   private static final String UPLOAD_DIRECTORY = "upload";
 
   // 上传配置
-  private static final int MEMORY_THRESHOLD = 1024 * 1024 * 10; // 3MB
+  private static final int MEMORY_THRESHOLD = 1024 * 1024 * 10; // 10MB
   private static final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
   private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 50; // 50MB
 
@@ -107,6 +107,8 @@ public class UploadController extends HttpServlet {
             // 保存文件到硬盘
             item.write(storeFile);
             request.getSession().setAttribute("pic", UPLOAD_DIRECTORY + File.separator + fileName);
+            //设置返回消息字符集
+            response.setCharacterEncoding("utf-8");
             Utils.returnJson(
                 response, Result.success(UPLOAD_DIRECTORY + File.separator + fileName));
           }

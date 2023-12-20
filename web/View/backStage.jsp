@@ -38,7 +38,7 @@
         .main .main-nav{
             display: grid;
             grid-template-columns: 100%;
-            grid-template-rows: repeat(4,60px);
+            grid-template-rows: repeat(5,60px);
             justify-items: center;
             align-items: center;
             background-color: #6a97ac;
@@ -74,6 +74,9 @@
 
 <%--    页面切换--%>
     <div class="main-nav">
+        <div onclick="changeSrc('<%=path%>/View/clientCarList.jsp')">
+            浏览车辆
+        </div>
         <div onclick="changeSrc('<%=path%>/View/carManager.jsp')">
             车辆管理
         </div>
@@ -97,7 +100,7 @@
 
 <%--    展示实际页面(页面里面嵌套一个页面)--%>
     <div>
-        <iframe id="iframeSrc" src="<%=path%>/View/carManager.jsp"></iframe>
+        <iframe id="iframeSrc" src="<%=path%>/View/clientCarList.jsp"></iframe>
     </div>
 </div>
 

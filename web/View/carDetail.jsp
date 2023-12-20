@@ -109,7 +109,7 @@
 <div class="main">
     <div class="img-contain"><img src="<%=path+"\\"+car.getPic()%>" alt=""></div>
     <div class="main-content">
-        <div style="font-size: 40px;font-weight: bold"><%=car.getModel()%></div>
+        <div style="font-size: 40px;font-weight: bold"><%=car.getBrand()%>-<%=car.getModel()%></div>
         <div class="main-content-piece">
             <div>价格:</div>
             <div style="display:grid;justify-items: end;margin-right: 40px"><%=car.getPrice()%>0000元</div>

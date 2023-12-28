@@ -23,6 +23,7 @@ public class CarDao extends BaseDaoImpl<Car> {
       car.setCount(rs.getInt("count"));
       car.setPrice(rs.getInt("price"));
       car.setPic(rs.getString("pic"));
+      close();
       return car;
     }
     return null;
@@ -68,6 +69,7 @@ public class CarDao extends BaseDaoImpl<Car> {
       car.setPic(rs.getString("pic"));
       result.add(car);
     }
+    close();
     return result;
   }
 }

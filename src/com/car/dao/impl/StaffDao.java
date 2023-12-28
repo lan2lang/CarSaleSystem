@@ -23,6 +23,7 @@ public class StaffDao extends BaseDaoImpl<Staff> {
       staff.setPassword(rs.getString("password"));
       staff.setSex(rs.getString("sex"));
       staff.setPhone(rs.getString("phone"));
+      close();
       return staff;
     }
     return null;
@@ -43,6 +44,7 @@ public class StaffDao extends BaseDaoImpl<Staff> {
       staff.setPhone(rs.getString("phone"));
       list.add(staff);
     }
+    close();
     return list;
   }
 
@@ -89,8 +91,10 @@ public class StaffDao extends BaseDaoImpl<Staff> {
 
       rs.next();
       staff.setStaffId(rs.getInt("staffId"));
+      close();
       return staff;
     } else {
+      close();
       return null;
     }
   }

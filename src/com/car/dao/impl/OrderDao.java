@@ -45,6 +45,7 @@ public class OrderDao extends BaseDaoImpl<Order> {
     sql = "insert into `order` (status, `desc`, clientId, carId) VALUES (?, ?, ?, ?)";
     order.setStatus("待确认");
 
+//    close();
     return executeUpdate(
         sql, order.getStatus(), order.getDesc(), order.getClientId(), order.getCarId());
   }
@@ -57,6 +58,7 @@ public class OrderDao extends BaseDaoImpl<Order> {
   public void confirm(int orderId) throws Exception {
     String sql = "update `order` set status=? where orderId=?";
     executeUpdate(sql, "待付款", orderId);
+    close();
   }
 
   /**
@@ -67,6 +69,7 @@ public class OrderDao extends BaseDaoImpl<Order> {
   public void pay(int orderId) throws Exception {
     String sql = "update `order` set status=? where orderId=?";
     executeUpdate(sql, "已完成", orderId);
+    close();
   }
 
   /**
@@ -77,6 +80,7 @@ public class OrderDao extends BaseDaoImpl<Order> {
   public void cancel(int orderId) throws Exception {
     String sql = "update `order` set status=? where orderId=?";
     executeUpdate(sql, "已取消", orderId);
+    close();
   }
 
   /** 查询订单（根据权限） */
@@ -116,6 +120,7 @@ public class OrderDao extends BaseDaoImpl<Order> {
 
       list.add(order);
     }
+    close();
     return list;
   }
 }

@@ -82,7 +82,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
   }
 
   public void close() {
-    DbUtils.close(rs, con, ps);
+    DruidUtils.close(rs, con, ps);
   }
 
   /**
